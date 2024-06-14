@@ -5,69 +5,264 @@
 [circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
 [circleci-url]: https://circleci.com/gh/nestjs/nest
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+  
+# API Documentation
 
-## Description
+## Overview
+This document provides information about the API endpoints for the Post Service.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Endpoints
 
-## Installation
+### GET /post/search
+Search for posts.
 
-```bash
-$ npm install
+**Parameters:**
+
+- `searchKeyWord`: The keyword to search for in posts.
+- `sortOrder`: The order to sort the results (asc/desc).
+- `page`: The page number.
+- `sortColumn`: The column to sort.
+- `limit`: The number of results per page.
+
+**Response:**
+
+```json
+{
+  "_metadata": {
+    "page": 1,
+    "per_page": 7,
+    "page_count": 7,
+    "total_results": 18,
+    "Links": [
+      {
+        "current": "/post/search?searchKeyWord=po&sortOrder=asc&page=1&sortColumn=id&limit=7"
+      },
+      {
+        "first": "/post/search?searchKeyWord=po&sortOrder=asc&page=1&sortColumn=id&limit=7"
+      },
+      {
+        "previous": "/post/search?searchKeyWord=po&sortOrder=asc&page=0&sortColumn=id&limit=7"
+      },
+      {
+        "next": "/post/search?searchKeyWord=po&sortOrder=asc&page=2&sortColumn=id&limit=7"
+      },
+      {
+        "last": "/post/search?searchKeyWord=po&sortOrder=asc&page=3&sortColumn=id&limit=7"
+      }
+    ]
+  },
+  "records": [
+    {
+      "id": 3,
+      "title": "Post 3",
+      "createdAt": "2024-06-14T04:36:59.000Z",
+      "updatedAt": "2024-06-14T04:36:59.000Z",
+      "uri": "/post/3"
+    },
+    {
+      "id": 4,
+      "title": "Post 4",
+      "createdAt": "2024-06-14T04:36:59.000Z",
+      "updatedAt": "2024-06-14T04:36:59.000Z",
+      "uri": "/post/4"
+    },
+    {
+      "id": 5,
+      "title": "Post 5",
+      "createdAt": "2024-06-14T04:36:59.000Z",
+      "updatedAt": "2024-06-14T04:36:59.000Z",
+      "uri": "/post/5"
+    },
+    {
+      "id": 6,
+      "title": "Post 6",
+      "createdAt": "2024-06-14T04:36:59.000Z",
+      "updatedAt": "2024-06-14T04:36:59.000Z",
+      "uri": "/post/6"
+    },
+    {
+      "id": 7,
+      "title": "Post 7",
+      "createdAt": "2024-06-14T04:36:59.000Z",
+      "updatedAt": "2024-06-14T04:36:59.000Z",
+      "uri": "/post/7"
+    },
+    {
+      "id": 8,
+      "title": "Post 8",
+      "createdAt": "2024-06-14T04:36:59.000Z",
+      "updatedAt": "2024-06-14T04:36:59.000Z",
+      "uri": "/post/8"
+    },
+    {
+      "id": 9,
+      "title": "Post 9",
+      "createdAt": "2024-06-14T04:36:59.000Z",
+      "updatedAt": "2024-06-14T04:36:59.000Z",
+      "uri": "/post/9"
+    }
+  ]
+}
 ```
 
-## Running the app
+---
 
-```bash
-# development
-$ npm run start
+### POST /post - http://localhost:3000/post
+Create a new post.
 
-# watch mode
-$ npm run start:dev
+**Request Body:**
 
-# production mode
-$ npm run start:prod
+- `title`: The title of the post.
+- `content`: The content of the post.
+```json
+{
+  "title": "Hello",
+  "content": "hmmmm"
+}
 ```
 
-## Test
+**Response:**
 
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+```json
+{
+    "title": "Hello",
+    "content": "hmmmm",
+    "id": 23,
+    "createdAt": "2024-06-14T07:49:36.218Z",
+    "updatedAt": "2024-06-14T07:49:36.218Z"
+}
 ```
 
-## Support
+---
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+### GET /post - http://localhost:3000/post?page=1&limit=4
+Get all posts.
 
-## Stay in touch
+**Parameters:**
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+- `page`: The page number.
+- `limit`: The number of results per page.
 
-## License
+**Response:**
 
-Nest is [MIT licensed](LICENSE).
+```json
+{
+    "_metadata": {
+        "page": "1",
+        "per_page": "4",
+        "page_count": 4,
+        "total_count": 22,
+        "Links": [
+            {
+                "current": "/post?page=1&limit=4"
+            },
+            {
+                "first": "/post?page=1&limit=4"
+            },
+            {
+                "previous": "/post?page=0&limit=4"
+            },
+            {
+                "next": "/post?page=2&limit=4"
+            },
+            {
+                "last": "/post?page=6&limit=4"
+            }
+        ]
+    },
+    "records": [
+        {
+            "id": 23,
+            "title": "Hello",
+            "createdAt": "2024-06-14T07:49:36.218Z",
+            "updatedAt": "2024-06-14T07:49:36.218Z",
+            "uri": "/post/23"
+        },
+        {
+            "id": 22,
+            "title": "Hello",
+            "createdAt": "2024-06-14T07:48:59.881Z",
+            "updatedAt": "2024-06-14T07:48:59.881Z",
+            "uri": "/post/22"
+        },
+        {
+            "id": 21,
+            "title": "Hello",
+            "createdAt": "2024-06-14T04:55:14.688Z",
+            "updatedAt": "2024-06-14T04:55:14.688Z",
+            "uri": "/post/21"
+        },
+        {
+            "id": 2,
+            "title": "Hello update",
+            "createdAt": "2024-06-14T04:36:59.000Z",
+            "updatedAt": "2024-06-14T05:57:55.000Z",
+            "uri": "/post/2"
+        }
+    ]
+}
+```
+
+---
+
+### GET /post/:id - http://localhost:3000/post/2
+Get a specific post.
+
+**Parameters:**
+
+- `id`: The ID of the post.
+
+**Response:**
+
+```json
+{
+    "id": 2,
+    "title": "Hello update",
+    "content": "This is content for post",
+    "createdAt": "2024-06-14T04:36:59.000Z",
+    "updatedAt": "2024-06-14T05:56:38.000Z"
+}
+```
+
+---
+
+### PATCH /post/:id - http://localhost:3000/post/2
+Update a specific post.
+
+**Parameters:**
+
+- `id`: The ID of the post.
+
+**Request Body:**
+
+- `title`: The new title of the post.
+- `content`: The new content of the post.
+
+**Response:**
+
+```json
+{
+    "id": 1,
+    "title": "Hello update",
+    "content": "This is content for post",
+    "createdAt": "2024-06-14T04:36:59.000Z",
+    "updatedAt": "2024-06-14T05:59:05.000Z"
+}
+```
+
+---
+
+### DELETE /post/:id - http://localhost:3000/post/1
+Delete a specific post.
+
+**Parameters:**
+
+- `id`: The ID of the post.
+
+**Response:**
+```json
+{
+  "message": "Post deleted"
+}
+```
+Confirmation of the deleted post.
